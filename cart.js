@@ -14,10 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
         { id: 3, p_name: "Product 3", price: 19.98 },
     ];
 
-    // ✅ Load from localStorage
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // 🔥 Render Products
     Products.forEach(element => {
         let row = document.createElement("li");
         row.className = "flex justify-between items-center w-full bg-gray-800 p-2 rounded mb-2";
@@ -36,14 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
         btnrem.textContent = "Remove";
         btnrem.className = "bg-red-500 px-2 py-1 rounded";
 
-        // ✅ Add
         btnadd.addEventListener("click", () => {
             cart.push(element);
             localStorage.setItem("cart", JSON.stringify(cart));
             renderCart();
         });
 
-        // ✅ Remove (only one item)
         btnrem.addEventListener("click", () => {
             let index = cart.findIndex(item => item.id === element.id);
 
@@ -64,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
         productsList.appendChild(row);
     });
 
-    // ✅ Checkout
     checkout.addEventListener("click", () => {
         if (cart.length === 0) {
             alert("Cart is empty");
@@ -77,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Purchase done");
     });
 
-    // 🔥 Render Cart
     function renderCart() {
         cartList.innerHTML = "";
 
